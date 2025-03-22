@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="x-icon" href="logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fresh Fruits Grocery</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        header h1 {
+            font-size: 3em;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Main Section */
+        .main-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px;
+        }
+
+        .product {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 250px;
+            margin: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product h3 {
+            font-size: 1.5em;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .product p {
+            font-size: 1.2em;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 15.25%;
+        }
+
+        footer p {
+            font-size: 1em;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .main-content {
+                justify-content: center;
+            }
+
+            .product {
+                width: 80%;
+            }
+        }
+        .product-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+  }
+
+  .product-card {
+      background-color: white;
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+  }
+
+  .product-card h3 {
+      font-size: 22px;
+      color: #333;
+      margin-top: 10px;
+  }
+
+  .product-card p {
+      font-size: 18px;
+      color: #777;
+      margin: 10px 0;
+  }
+
+  .quantity-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0;
+  }
+
+  .quantity-container input {
+      width: 60px;
+      padding: 5px;
+      text-align: center;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+  }
+
+  .add-to-cart-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+  }
+
+  .add-to-cart-btn:hover {
+      background-color: #45a049;
+  }
+
+  .total-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-top: 10px;
+  }
+
+  .cart-button {
+      text-decoration: none;
+      color: #fff;
+      background-color: #3498db;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 20px;
+  }
+
+  .cart-button:hover {
+      background-color: #2980b9;
+  }
+  .toast {
+            visibility: hidden; /* Initially hidden */
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #6C63FF; /* Green background */
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px; /* 30px from the bottom */
+            font-size: 17px;
+            transition: visibility 0s, opacity 0.5s linear; /* Smooth fade */
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;}
+    </style>
+</head>
+<body>
+    <!-- Notification div -->
+<div id="notification" class="toast"></div>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Fresh Fruits Grocery</h1>
+        <p>Your source for the freshest fruits in town!</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="home page.html">Home</a></li>
+            <li><a href="menu.htm">Menu</a></li>
+            <li><a href="hlo.html">About Us</a></li>
+            <li><a href="knowlege.html">Contact</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Section -->
+    <div class="product-container">
+        <!-- Product Card 1 -->
+        <div class="product-card" id="product1">
+            <img src="product1v.jpg" alt="Product 1">
+            <h3>Tomato</h3>
+            <p>₹40/Kg</p>
+    
+            <div class="quantity-container">
+                <label for="quantity1">Quantity: </label>
+                <input type="number" id="quantity1" value="1" min="1">
+            </div>
+    
+            <div class="total-price" id="totalPrice1">
+                Total: ₹40/Kg
+            </div>
+    
+            <button class="add-to-cart-btn" onclick="addToCart('Tomato', 40, document.getElementById('quantity1').value)">Add to Cart</button>
+        </div>
+    
+        <!-- Product Card 2 -->
+        <div class="product-card" id="product2">
+            <img src="product2v.jpg" alt="Product 2">
+            <h3>Raddish</h3>
+            <p>₹30/Kg</p>
+    
+            <div class="quantity-container">
+                <label for="quantity2">Quantity: </label>
+                <input type="number" id="quantity2" value="1" min="1">
+            </div>
+    
+            <div class="total-price" id="totalPrice2">
+                Total: ₹30/Kg
+            </div>
+    
+            <button class="add-to-cart-btn" onclick="addToCart('Raddish', 30, document.getElementById('quantity2').value)">Add to Cart</button>
+        </div>
+    
+        <!-- Product Card 3 -->
+        <div class="product-card" id="product3">
+            <img src="product3v.jpg" alt="Product 3">
+            <h3>Carrot</h3>
+            <p>₹50/Kg</p>
+    
+            <div class="quantity-container">
+                <label for="quantity3">Quantity: </label>
+                <input type="number" id="quantity3" value="1" min="1">
+            </div>
+    
+            <div class="total-price" id="totalPrice3">
+                Total: ₹50/Kg
+            </div>
+    
+            <button class="add-to-cart-btn" onclick="addToCart('Carrot', 50, document.getElementById('quantity3').value)">Add to Cart</button>
+        </div>
+        <!-- Product Card 4 -->
+        <div class="product-card" id="product4">
+            <img src="product4v.jpg" alt="Product 4">
+            <h3>Potato</h3>
+            <p>₹20/Kg</p>
+    
+            <div class="quantity-container">
+                <label for="quantity4">Quantity: </label>
+                <input type="number" id="quantity4" value="1" min="1">
+            </div>
+    
+            <div class="total-price" id="totalPrice4">
+                Total: ₹20/Kg
+            </div>
+    
+            <button class="add-to-cart-btn" onclick="addToCart('Potato', 20, document.getElementById('quantity4').value)">Add to Cart</button>
+        </div>
+        <!-- Product Card 5 -->
+        <div class="product-card" id="product5">
+            <img src="product5v.jpg" alt="Product 5">
+            <h3>Cabbage</h3>
+            <p>₹40/Kg</p>
+    
+            <div class="quantity-container">
+                <label for="quantity5">Quantity: </label>
+                <input type="number" id="quantity5" value="1" min="1">
+            </div>
+    
+            <div class="total-price" id="totalPrice5">
+                Total: ₹40/Kg
+            </div>
+    
+            <button class="add-to-cart-btn" onclick="addToCart('Cabbage', 40, document.getElementById('quantity5').value)">Add to Cart</button>
+        </div>
+        <!-- Product Card 6 -->
+        <div class="product-card" id="product5">
+            <img src="product6v.jpg" alt="Product 5">
+            <h3>Cauliflower</h3>
+            <p>₹75/Kg</p>
+    
+            <div class="quantity-container">
+                <label for="quantity6">Quantity: </label>
+                <input type="number" id="quantity6" value="1" min="1">
+            </div>
+    
+            <div class="total-price" id="totalPrice6">
+                Total: ₹75/Kg
+            </div>
+    
+            <button class="add-to-cart-btn" onclick="addToCart('Cauliflower', 75, document.getElementById('quantity6').value)">Add to Cart</button>
+        </div>
+        <!-- Product Card 7 -->
+        <div class="product-card" id="product7">
+            <img src="product7v.jpg" alt="Product 7">
+            <h3>Spinach</h3>
+            <p>₹25/Kg</p>
+    
+            <div class="quantity-container">
+                <label for="quantity7">Quantity: </label>
+                <input type="number" id="quantity7" value="1" min="1">
+            </div>
+    
+            <div class="total-price" id="totalPrice7">
+                Total: ₹200/Kg
+            </div>
+    
+            <button class="add-to-cart-btn" onclick="addToCart('Spinach', 25, document.getElementById('quantity7').value)">Add to Cart</button>
+        </div>
+        <!-- Product Card 8 -->
+        <div class="product-card" id="product8">
+            <img src="product8v.jpg" alt="Product 8">
+            <h3>Onion</h3>
+            <p>₹50/Kg</p>
+    
+            <div class="quantity-container">
+                <label for="quantity8">Quantity: </label>
+                <input type="number" id="quantity8" value="1" min="1">
+            </div>
+    
+            <div class="total-price" id="totalPrice8">
+                Total: ₹120/Kg
+            </div>
+    
+            <button class="add-to-cart-btn" onclick="addToCart('Onion', 50, document.getElementById('quantity8').value)">Add to Cart</button>
+        </div>
+    </div>
+    
+      <script>
+        // Function to calculate and display total price
+        function updateTotalPrice(price, quantity, totalPriceElementId) {
+            const totalPrice = (price * quantity).toFixed(2);
+            document.getElementById(totalPriceElementId).textContent = `Total: ₹${totalPrice}`;
+        }
+    
+        // Function to add item to cart
+        function addToCart(name, price, quantity) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            // Show the toast notification
+    const toast = document.getElementById("notification");
+    toast.textContent = "Item added successfully!";
+    toast.className = "toast show";
+
+    // Hide the toast after 1 seconds
+    setTimeout(function() {
+        toast.className = toast.className.replace("show", "");
+    }, 500); // The notification will disappear after 1 seconds
+
+
+            const product = {
+                name: name,
+                price: parseFloat(price),
+                quantity: parseInt(quantity)
+            };
+    
+            const existingItemIndex = cart.findIndex(item => item.name === name);
+    
+            if (existingItemIndex !== -1) {
+                // If item already exists, update its quantity
+                cart[existingItemIndex].quantity += product.quantity;
+            } else {
+                // If item doesn't exist, add it to cart
+                cart.push(product);
+            }
+    
+            localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
+        }
+    
+        // Update total price for each product when the quantity changes
+        document.getElementById('quantity1').addEventListener('input', function () {
+            updateTotalPrice(40, this.value, 'totalPrice1');
+        });
+        document.getElementById('quantity2').addEventListener('input', function () {
+            updateTotalPrice(30, this.value, 'totalPrice2');
+        });
+        document.getElementById('quantity3').addEventListener('input', function () {
+            updateTotalPrice(50, this.value, 'totalPrice3');
+        });
+        document.getElementById('quantity4').addEventListener('input', function () {
+            updateTotalPrice(20, this.value, 'totalPrice4');
+        });
+        document.getElementById('quantity5').addEventListener('input', function () {
+            updateTotalPrice(40, this.value, 'totalPrice5');
+        });
+        document.getElementById('quantity6').addEventListener('input', function () {
+            updateTotalPrice(75, this.value, 'totalPrice6');
+        });
+        document.getElementById('quantity7').addEventListener('input', function () {
+            updateTotalPrice(25, this.value, 'totalPrice7');
+        });
+        document.getElementById('quantity8').addEventListener('input', function () {
+            updateTotalPrice(50, this.value, 'totalPrice8');
+        });
+    </script>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Fresh Fruits Grocery | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

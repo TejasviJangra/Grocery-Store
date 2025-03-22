@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="x-icon" href="logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+      
+    <header class="head">
+        <nav class="navbar">
+            <div class="logo">
+                <h1>OrderOnline</h1>
+              </div>
+          <ul class="nav-links">
+            <li><a href="home page.html">Home</a></li>
+            <li><a href="menu.htm">Menu</a></li>
+            <li><a href="hlo.html">About Us</a></li>
+            <li><a href="cart.html">Cart</a></li>
+          </ul>
+        </nav>
+      </header>
+
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <section class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>If you have any questions, feel free to reach out to us using the contact details below or by filling out the form.</p>
+
+        <div class="contact-details">
+            <p><strong>Phone:</strong> <a href="tel:+1234567890">+1 234 567 890</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@example.com">info@example.com</a></p>
+        </div>
+
+        <h3>Office Hours</h3>
+        <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+        <p>Saturday: 10:00 AM - 2:00 PM</p>
+        <p>Sunday: Closed</p>
+
+        <h3>Our Address</h3>
+        <p>123 Business Street, City, Country</p>
+    </section>
+
+    <section class="contact-form">
+        <h2>Contact Form</h2>
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="3b35de44-a4c1-43c9-91da-53880dba6c28">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+                <option value="general">General Inquiry</option>
+                <option value="support">Customer Support</option>
+                <option value="feedback">Product Feedback</option>
+            </select>
+
+            <label for="message">Message</label>
+            
+            
+
+            <div class="textarea-container">
+                <textarea name="message" placeholder="Type something..." id="speechToText"></textarea>
+                <div class="non-button-overlay" onclick="voice()"><i class='bx bxs-microphone' onclick="voice()"></i></div>
+              
+
+            
+            </div>
+            <script>
+                function voice(){
+                    var recognition = new webkitSpeechRecognition();
+                    recognition.lang="en-GB";
+                    recognition.onresult= function(event){
+                        console.log(event);
+                        document.getElementById("speechToText").value = event.results[0][0].transcript;
+                    }
+                    recognition.start();
+                }
+            </script>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Example Company</p>
+    </footer>
+
+</body>
+</html>

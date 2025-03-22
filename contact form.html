@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="x-icon" href="logo.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>contact form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="contact-container">
+        <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+            <div class="contact-left-title">
+                <h2>Get in touch</h2>
+                <hr>
+            </div>
+            <input type="hidden" name="access_key" value="3b35de44-a4c1-43c9-91da-53880dba6c28">
+            <input type="text" name="name" placeholder="Your Name" class="contcat-inputs" required>
+            <input type="email" name="email" placeholder="Your Email" class="contcat-inputs" required>
+            <textarea name="message" placeholder="Your Message" class="contcat-inputs"  id="speechToText" required></textarea>
+            <div>
+                <button onclick="voice()">Click to speak</button>
+            </div>
+            <button type="submit">Submit<img src="C:\Users\User\Desktop\arrow_icon.png" alt></button>
+        </form>
+        <div class="contact-right">
+            <img src="C:\Users\User\Desktop\right_img.png" alt="">
+        </div>
+    </div>
+    <script>
+        function voice(){
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang="en-GB";
+            recognition.onresult= function(event){
+                console.log(event);
+                document.getElementById("speechToText").value = event.results[0][0].transcript;
+            }
+            recognition.start();
+        }
+    </script>
+</body>
+</html>

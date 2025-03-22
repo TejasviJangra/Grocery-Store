@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" type="x-icon" href="logo.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify OTP</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(white, rgb(97, 228, 97));
+      }
+      .container {
+        background: #fff;
+        padding: 3rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+      .title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+      .input-field {
+        margin-bottom: 1rem;
+      }
+      .input-field input {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .btn {
+        background: #4caf50;
+        color: #fff;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s;
+      }
+      .btn:hover {
+        background: #45a049;
+      }
+      .message {
+        margin-top: 1rem;
+        font-size: 1rem;
+      }
+      .message.success {
+        color: #4caf50;
+      }
+      .message.error {
+        color: #f44336;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form action="#" id="otp-form" class="otp-form">
+        <h2 class="title">Verify OTP</h2>
+        <div class="input-field">
+          <input type="text" id="otp" maxlength="6" placeholder="Enter OTP" required />
+        </div>
+        <input type="submit" value="Verify OTP" class="btn solid" />
+        <div id="otp-message" class="message"></div>
+      </form>
+    </div>
+
+    <script>
+      // Prevent navigating back to the previous page
+      history.replaceState(null, null, location.href);
+      window.addEventListener("popstate", () => {
+        history.pushState(null, null, location.href);
+      });
+
+      const otpForm = document.querySelector("#otp-form");
+      const otpMessageElement = document.getElementById("otp-message");
+      let attempts = 0; // Track the number of OTP attempts
+      const maxAttempts = 3; // Maximum allowed attempts
+
+      // Get the OTP and username stored in localStorage (from Forgot Password flow)
+      const resetOtpData = JSON.parse(localStorage.getItem("resetOtp")); // Contains { otp, username }
+
+      // Check if the OTP data exists
+      if (!resetOtpData || !resetOtpData.otp) {
+        otpMessageElement.textContent = "No OTP found. Please request a new one.";
+        otpMessageElement.className = "message error";
+
+        // Disable the form
+        otpForm.querySelector("input[type='submit']").disabled = true;
+        otpForm.querySelector("input[type='text']").disabled = true;
+      }
+
+      otpForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const otpInput = document.getElementById("otp").value.trim();
+
+        // Check if OTP is valid
+        if (otpInput === resetOtpData.otp.toString()) {
+          otpMessageElement.textContent = "OTP Verified Successfully! Redirecting to reset password...";
+          otpMessageElement.className = "message success";
+
+          // Redirect to the password reset page after 2 seconds
+          setTimeout(() => {
+            window.location.href = "reset_password.html"; // Replace with your reset password page
+          }, 2000);
+        } else {
+          attempts++;
+          if (attempts >= maxAttempts) {
+            otpMessageElement.textContent = "Maximum attempts reached! Redirecting to login page...";
+            otpMessageElement.className = "message error";
+
+            // Redirect to the login page after 2 seconds
+            setTimeout(() => {
+              window.location.href = "login.html"; // Replace with your login page
+            }, 2000);
+          } else {
+            otpMessageElement.textContent = `Invalid OTP. You have ${maxAttempts - attempts} attempt(s) left.`;
+            otpMessageElement.className = "message error";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

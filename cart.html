@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="x-icon" href="logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .cart-container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .header {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .remove-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .remove-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Header Styles */
+        .head {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background-color:#928f8f;
+            border-radius: 10px;
+            color: black;
+            padding: 10px 11px 10px 11px;
+        }
+
+        /* Payment Options Styles */
+        .payment-options {
+            margin-top: 20px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .payment-option input {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option label {
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option input:checked + label {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .payment-option input:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .payment-option:hover {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid #ccc;
+    border-top: 6px solid #4CAF50;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-top: 250px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="head">
+        <nav class="navbar">
+            <div class="logo">
+                <h1>OrderOnline</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="home page.html">Home</a></li>
+                <li><a href="menu.htm">Menu</a></li>
+                <li><a href="hlo.html">About Us</a></li>
+                <li><a href="knowlege.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="header">
+        <h1>Your Cart</h1>
+    </div>
+
+    <div class="cart-container">
+        <h2>Items in Cart</h2>
+
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Cart items will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <div class="total" id="totalPrice">
+            Total: ₹0.00
+        </div>
+
+        <!-- Payment Method Selection -->
+        <div class="payment-options">
+            <h3>Select Payment Method</h3>
+            <div class="payment-option">
+                <input type="radio" id="cashOnDelivery" name="paymentMethod" value="cashOnDelivery">
+                <label for="cashOnDelivery">Cash on Delivery</label>
+            </div>
+            <div class="payment-option">
+                <input type="radio" id="cardPayment" name="paymentMethod" value="cardPayment">
+                <label for="cardPayment">Credit/Debit Card</label>
+            </div>
+        </div>
+        <br>
+        <button class="btn" id="checkoutButton">Proceed to Checkout</button>
+    </div>
+    <p id="cartMessage" style="font-size: 18px; color: red; font-weight: bold;"></p>
+
+<!-- Add this spinner element in your HTML file, ideally in the same container where the checkout button is -->
+<div id="spinner" class="spinner-container" style="display: none;" align="center">
+    <div class="spinner"></div>
+    <p>Submitting your order...</p>
+</div>
+
+
+
+    <!-- Audio element for bubble sound -->
+    <audio id="bubbleSound" src="bubble-sound.mp3" preload="auto"></audio>
+
+<script src="cart.js"></script>
+
+</body>
+</html>

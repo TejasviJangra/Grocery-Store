@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="shortcut icon" type="x-icon" href="logo.png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordering Website</title>
+  <link rel="stylesheet" href="homepage.css">
+  <style>
+    /* General Navbar Styling */
+    .navbar {
+      display: flex;
+      justify-content: space-between; /* Space between the account and nav links */
+      align-items: center;
+      background-color: #333;
+      padding: 10px 20px;
+    }
+
+    /* Logo and Account Section */
+    .logo-account {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Account on the Left of Logo */
+    .account {
+      display: flex;
+      align-items: center;
+      margin-right: 20px; /* Space between account and logo */
+      position: relative; /* To position the details tooltip */
+    }
+
+    .logo h1 {
+      color: #fff;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .user-logo {
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: -0.2cm;
+      margin-right: 5px;
+    }
+
+    #userName {
+      color: #fff;
+      font-size: 18px;
+    }
+
+    /* Navbar Links */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li {
+      margin-left: 20px; /* Space between nav items */
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .logout a {
+      color: red; /* Red color for the logout link */
+      border-radius: 10px;
+    }
+
+    /* User Details Tooltip (hidden by default) */
+    .account-details {
+      position: absolute;
+      top: 40px; /* Adjust positioning */
+      left: 0;
+      background-color: #fff;
+      color: #333;
+      padding: 10px;
+      border: 3px solid #00ccff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      width: 250px;
+      display: none; /* Hidden by default */
+      z-index: 10;
+      color: black;
+    }
+
+    .account-details p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    /* Show the account details when hovering over the account section */
+    .account:hover .account-details {
+      display: block;
+    }
+    /* File input styling */
+    #uploadImage {
+      margin-top: 10px;
+    }
+
+    /* Settings Logo Styles */
+    .settings-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 70px;
+      height: 70px;
+      background-color: #333;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .settings-icon:hover {
+      transform: rotate(180deg) scale(1.1);
+      background-color: #00ccff;
+    }
+
+    .settings-icon img {
+      width: 40px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Notification div -->
+  <div id="notification" class="toast"></div>
+
+  <!-- Header Section -->
+  <header>
+    <nav class="navbar">
+      <!-- Logo and Account Section -->
+      <div class="logo-account">
+        <!-- Account Section: Positioned left of the Logo -->
+        <div class="account">
+          <img src="user-logo.webp" alt="User Logo" id="userImage" class="user-logo"> <!-- Placeholder for user logo -->
+          <span id="userName">Guest</span> <!-- Placeholder for username -->
+
+          <!-- Hidden User Details Tooltip (will be shown on hover) -->
+          <div class="account-details">
+            <p><b>Username:  </b><span id="user">Tejas</span></p>
+            <p><b>Email:  </b><span id="userEmail">example@example.com</span></p>
+            <p><b>Address:  </b><span id="userAddress">123 Main St, City</span></p>
+
+            <!-- File Upload for User Logo -->
+            <b><label for="uploadImage">Change Profile Image:</label></b>
+            <input type="file" id="uploadImage" accept="image/*">
+
+            <!-- Reset Profile Button -->
+            <button id="resetProfile" style="background-color: #ff4c4c; color: white; border: none; padding: 5px 10px; border-radius: 5px; margin-top: 10px; cursor: pointer;">Reset Profile</button>
+          </div>
+        </div>
+
+        <div class="logo">
+          <h1>OrderOnline</h1>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="home page.html">Home</a></li>
+        <li><a href="menu.htm">Menu</a></li>
+        <li><a href="hlo.html">About Us</a></li>
+        <li><a href="knowlege.html">Contact</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li class="logout"><a href="login.html">Log out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+ <!-- Hero Section -->
+ <section class="hero">
+  <div class="hero-content">
+    <h2>Welcome to Fresh Grocery!</h2>
+    <p>Get fresh groceries delivered to your door with just a few clicks.</p>
+    <a href="#menu" class="btn-primary">Order Now</a>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="featured-products" id="menu">
+  <h2>Our Bestsellers</h2>
+</section>
+
+<div class="product-container">
+  <!-- Product Card 1 -->
+  <div class="product-card" id="product1">
+    <img src="product1.jpg" alt="Product 1">
+    <h3>Apples</h3>
+    <p>₹100/Kg</p>
+    <div class="quantity-container">
+      <label for="quantity1">Quantity: </label>
+      <input type="number" id="quantity1" value="1" min="1">
+    </div>
+    <div class="total-price" id="totalPrice1">
+      Total: ₹100/Kg
+    </div>
+    <button class="add-to-cart-btn" onclick="addToCart('Apples', 100, document.getElementById('quantity1').value)">Add to Cart</button>
+  </div>
+
+  <!-- Product Card 2 -->
+  <div class="product-card" id="product2">
+    <img src="product2.jpg" alt="Product 2">
+    <h3>Organic Bananas</h3>
+    <p>₹60/Kg</p>
+    <div class="quantity-container">
+      <label for="quantity2">Quantity: </label>
+      <input type="number" id="quantity2" value="1" min="1">
+    </div>
+    <div class="total-price" id="totalPrice2">
+      Total: ₹60/Kg
+    </div>
+    <button class="add-to-cart-btn" onclick="addToCart('Organic Bananas', 60, document.getElementById('quantity2').value)">Add to Cart</button>
+  </div>
+
+  <!-- Product Card 3 -->
+  <div class="product-card" id="product3">
+    <img src="product3.jpg" alt="Product 3">
+    <h3>Mud Apples</h3>
+    <p>₹90/Kg</p>
+    <div class="quantity-container">
+      <label for="quantity3">Quantity: </label>
+      <input type="number" id="quantity3" value="1" min="1">
+    </div>
+    <div class="total-price" id="totalPrice3">
+      Total: ₹90/Kg
+    </div>
+    <button class="add-to-cart-btn" onclick="addToCart('Mud Apples', 90, document.getElementById('quantity3').value)">Add to Cart</button>
+  </div>
+</div>
+
+
+  <!-- Settings Logo -->
+  <div class="settings-icon" onclick="openSettings()">
+    <img src="setting.png" alt="Settings">
+  </div>
+
+  <script>
+    // Function to calculate and display total price
+    function updateTotalPrice(price, quantity, totalPriceElementId) {
+        const totalPrice = (price * quantity).toFixed(2);
+        document.getElementById(totalPriceElementId).textContent = `Total: ₹${totalPrice}`;
+    }
+
+    // Function to add item to cart
+    function addToCart(name, price, quantity) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Show the toast notification
+        const toast = document.getElementById("notification");
+        toast.textContent = "Item added successfully!";
+        toast.className = "toast show";
+
+        // Hide the toast after 1 second
+        setTimeout(function() {
+            toast.className = toast.className.replace("show", "");
+        }, 500);
+
+        const product = {
+            name: name,
+            price: parseFloat(price),
+            quantity: parseInt(quantity)
+        };
+
+        const existingItemIndex = cart.findIndex(item => item.name === name);
+
+        if (existingItemIndex !== -1) {
+            // If item already exists, update its quantity
+            cart[existingItemIndex].quantity += product.quantity;
+        } else {
+            // If item doesn't exist, add it to cart
+            cart.push(product);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
+    }
+
+    // Update total price for each product when the quantity changes
+    document.getElementById('quantity1').addEventListener('input', function () {
+        updateTotalPrice(100, this.value, 'totalPrice1');
+    });
+    document.getElementById('quantity2').addEventListener('input', function () {
+        updateTotalPrice(60, this.value, 'totalPrice2');
+    });
+    document.getElementById('quantity3').addEventListener('input', function () {
+        updateTotalPrice(90, this.value, 'totalPrice3');
+    });
+
+    // Fetch the username from localStorage and ensure the first letter is capitalized
+    function fetchUserDetails() {
+      const loggedInUser = sessionStorage.getItem('loggedInUser'); // Fetch the logged-in username from sessionStorage
+
+      if (loggedInUser) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const currentUser = users.find(user => user.username === loggedInUser);
+
+        if (currentUser) {
+          // Capitalize the first letter of the username and set it
+          const capitalizedUsername = currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1);
+          document.getElementById('userName').textContent = `Welcome, ${capitalizedUsername}`;
+
+          // Display email and address in the account-details tooltip
+          document.getElementById('user').textContent =  currentUser.username;
+          document.getElementById('userEmail').textContent =  currentUser.email;
+          document.getElementById('userAddress').textContent =  currentUser.address;
+        }
+      } else {
+        document.getElementById('userName').textContent = 'Guest';
+      }
+    }
+
+// Image upload functionality per user
+const uploadInput = document.getElementById('uploadImage');
+    const userImage = document.getElementById('userImage');
+
+    uploadInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const loggedInUser = sessionStorage.getItem('loggedInUser'); // Fetch the currently logged-in user
+
+        if (file && loggedInUser) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const imageDataUrl = e.target.result;
+                userImage.src = imageDataUrl; // Update the user image immediately
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+
+                // Find the current user and update their profile image in localStorage
+                const currentUser = users.find(user => user.username === loggedInUser);
+                if (currentUser) {
+                    currentUser.profileImage = imageDataUrl; // Attach the image to the user's data
+                    localStorage.setItem('users', JSON.stringify(users)); // Save updated user data
+                }
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Load the user's saved profile image on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        fetchUserDetails(); // Ensure user details are loaded
+
+        const loggedInUser = sessionStorage.getItem('loggedInUser'); // Fetch the currently logged-in user
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Find the current user's profile image if it exists
+        const currentUser = users.find(user => user.username === loggedInUser);
+        if (currentUser && currentUser.profileImage) {
+            userImage.src = currentUser.profileImage; // Set the saved profile image
+        }
+    });
+    document.getElementById('resetProfile').addEventListener('click', function () {
+    const loggedInUser = sessionStorage.getItem('loggedInUser'); // Fetch the logged-in user
+
+    if (loggedInUser) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const currentUser = users.find(user => user.username === loggedInUser);
+
+        if (currentUser) {
+            // Reset profile image to default
+            currentUser.profileImage = 'user-logo.webp'; // Default user logo
+            localStorage.setItem('users', JSON.stringify(users)); // Save updated user data
+
+            // Update UI
+            document.getElementById('userImage').src = 'user-logo.webp';
+        }
+    }
+});
+
+    // Function to open settings (you can customize this)
+    function openSettings() {
+      window.location.href = 'settings.html'; // Redirect to settings page
+    }
+  </script>
+  <br><br>
+  <!-- Hero Section -->
+  <section class="link">
+    <div class="hero-content">
+      <a href="menu.htm" class="btn-primary">Go to Menu</a>
+    </div>
+  </section>
+   <!-- About Us Section -->
+   <section class="about-us">
+    <h2>About Us</h2>
+    <p>We are dedicated to bringing you the best and freshest groceries at the most affordable prices. With a wide selection of products, we make sure you get everything you need delivered straight to your doorstep.</p>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2025 Fresh Grocery. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>contact form</title>
+    <link rel="stylesheet" href="formss.css">
+</head>
+<body>
+<div>
+<h1>Voice Recognition</h1>
+    <textarea rows="5" cols="50" placeholder="Your Voice Message is here..." id="speechToText" required></textarea><br>
+    <button onclick="voice()">Click to speak</button>
+</div>
+<script>
+    function voice(){
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang="en-GB";
+        recognition.onresult= function(event){
+            console.log(event);
+            document.getElementById("speechToText").value = event.results[0][0].transcript;
+        }
+        recognition.start();
+    }
+</script>
+</body>
+</html>

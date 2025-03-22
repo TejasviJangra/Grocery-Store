@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="shortcut icon" type="x-icon" href="logo.png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="stylesheet" href="homepage.css">
+  <style>
+    select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  appearance: none; /* Removes default browser arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D%22http%3A//www.w3.org/2000/svg%22 viewBox%3D%220 0 4 5%22%3E%3Cpath fill%3D%22%23333333%22 d%3D%22M2 0L0 2h4z%22/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 10px;
+}
+
+select:hover {
+
+  box-shadow: 0 0 5px rgba(0, 123, 181, 0.3);
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 181, 0.5);
+}
+
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --accent-color: #007bb5;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header {
+      background-color: var(--accent-color);
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      border-radius: 15px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+    }
+
+    .settings-section {
+      margin-bottom: 30px;
+    }
+
+    .settings-section h2 {
+      font-size: 22px;
+      color: var(--accent-color);
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .settings-section label {
+      display: block;
+      margin: 15px 0 5px;
+      font-size: 16px;
+    }
+
+    .settings-section input[type="text"],
+    .settings-section input[type="email"],
+    .settings-section input[type="password"],
+    .settings-section textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .settings-section button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 25px;
+      border: none;
+      background: var(--accent-color);
+      color: #fff;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .settings-section button:hover {
+      opacity: 0.9;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logout-button {
+      background: linear-gradient(135deg, #ff4b4b, #ff7979);
+    }
+
+    .logout-button:hover {
+      background: linear-gradient(135deg, #d43b3b, #ff4b4b);
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background-color: var(--accent-color);
+      color: #fff;
+      position: relative;
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1>Settings</h1>
+    <nav>      
+    <!-- Navigation Links -->
+          <ul class="nav-links">
+            <li><a href="home page.html">Home</a></li>
+            <li><a href="menu.htm">Menu</a></li>
+            <li><a href="hlo.html">About Us</a></li>
+            <li><a href="knowlege.html">Contact</a></li>
+            <li><a href="cart.html">Cart</a></li>
+          </ul>
+        </nav>
+  </header>
+
+  <!-- Settings Container -->
+  <div class="container">
+    <!-- Update Profile Section -->
+    <div class="settings-section" id="profile-section">
+      <h2>Update Profile</h2>
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your username">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email">
+
+      <label for="address">Address</label>
+      <textarea id="address" rows="3" placeholder="Enter your address"></textarea>
+
+      <button onclick="updateProfile()">Save Changes</button>
+    </div>
+
+    <!-- Change Password Section -->
+    <div class="settings-section" id="password-section">
+      <h2>Change Password</h2>
+      <label for="current-password">Current Password</label>
+      <input type="password" id="current-password" placeholder="Enter current password">
+
+      <label for="new-password">New Password</label>
+      <input type="password" id="new-password" placeholder="Enter new password">
+
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" placeholder="Confirm new password">
+
+      <button onclick="changePassword()">Change Password</button>
+    </div>
+
+    <!-- Notification Preferences Section -->
+    <div class="settings-section" id="notification-section">
+      <h2>Notification Preferences</h2>
+      <label>
+        <input type="checkbox" id="email-notifications"> Email Notifications
+      </label>
+      <label>
+        <input type="checkbox" id="sms-notifications"> SMS Notifications
+      </label>
+      <button onclick="updateNotifications()">Save Preferences</button>
+    </div>
+
+    <!-- Privacy Settings Section -->
+    <div class="settings-section" id="privacy-section">
+      <h2>Privacy Settings</h2>
+      <label>
+        <input type="checkbox" id="public-profile"> Make my profile public
+      </label>
+      <label>
+        <input type="checkbox" id="share-data"> Share data with third-party apps
+      </label>
+      <button onclick="updatePrivacy()">Update Privacy Settings</button>
+    </div>
+
+    <!-- Theme Customization Section -->
+    <div class="settings-section" id="theme-section">
+      <h2>Theme Customization</h2>
+      <label for="theme-select">Choose a theme:</label>
+      <select id="theme-select">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="blue">Blue</option>
+      </select>
+      <button onclick="applyTheme()">Apply Theme</button>
+    </div>
+
+    <!-- Logout Section -->
+    <div class="settings-section" id="logout-section">
+      <h2>Log Out</h2>
+      <br>
+      <button class="logout-button" onclick="logOut()">Log Out</button>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2023 Fresh Grocery. All rights reserved.</p>
+  </footer>
+
+  <script src="settings.js">
+  </script>
+</body>
+</html>

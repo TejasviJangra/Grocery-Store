@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Regestration form</title>
+</head>
+<body bgcolor="yellow">
+<font face=broadway color="blue" size=4><h1 align="center ">Pizza Factory</h1>
+<hr color="black"></font>
+<form action="https://api.web3forms.com/submit" method="POST">
+<h2>Place Order Form</h2>
+<input type="hidden" name="access_key" value="3b35de44-a4c1-43c9-91da-53880dba6c28">
+<p>Name: <input type="text" name="name" placeholder="Name"></p>
+<p>Address: <input type="text" name="address" placeholder="address" required></p>
+<p>Phone number: <input type="button" name="phone" value="+91">&#160<input type="text" name="phone" placeholder="phone no." required></p>
+<table width=50% border=0 frame="void" rules="none">
+<tr>
+<td><b><h3>Size</h3></b></td>
+<td><b><h3>Toppings</h3></b></td>
+</tr>
+<tr>
+<td><input type="radio" name="radio"> Small</td>
+<td><select name="toppings">
+<option>----Select----</option>
+<option value="Cheese">Cheese</option>
+<option value="Olives">Olives</option>
+<option value="Pepperoni">Pepperoni</option>
+<option value="Bacon">Bacon</option>
+</select>
+</td>
+<tr>
+<td><input type="radio" name="radio"> Medium</td>
+</tr>
+<tr>
+<td><input type="radio" name="radio"> Large</td>
+</tr>
+</table>
+<br>
+<table width=36% border=0 frame="void" rules="none">
+<tr>
+<td><input type="Submit" name="Process Order" value="Process order"/></td>
+<td><input type="Reset" name="Reset" value="Clear"/></td>
+</tr>
+</table>
+</form>
+<br>
+<h3>Description:</h3>
+<textarea name="Order" cols=70 rows=10 placeholder="Your message"></textarea>
+</body>
+</html>
